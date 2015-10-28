@@ -1,8 +1,10 @@
 Package: pesquisaR
-Title: What the Package Does (one line, title case)
-Version: 0.0.0.9000
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph)
+Title: Pesquisas de Opinião em R
+Version: 0.0.1
+Authors@R: person("Andre", "Chalom", email = "andrechalom@gmail.com", role = c("aut", "cre"))
+Description: Conjunto de funções para gerar páginas HTML elegantes e funcionais a partir de dados de 
+  pesquisas de opinião.
 Depends: R (>= 3.2.2)
-License: What license is it under?
+Imports: shiny
+License: GPL-2
 LazyData: true

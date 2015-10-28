@@ -6,14 +6,14 @@
 #' Essa função deve ser usada apenas em perguntas relacionadas, ou seja, todos os fatores devem ter
 #' exatamente os mesmos níveis.
 #' A função \code{porc} gera uma tabela de porcentagem para ser mostrada juntamente com o gráfico acima.
-#' Ambas as funções acessam a variável global dados (pode ser alterado no futuro!)
+#' @param dados Tabela de dados gerada pela função \code{\link{carga}}
 #' @param idx índice das colunas desejadas na variável dados
 #' @param col Cores a serem utilizadas
 #' @param main Título do gráfico
 #' @param under Lógico. O label de cada questão deve ser mostrado sob a barra?
 #' @encoding utf-8
 #' @export
-graf <- function(idx, col, main, under=FALSE) {
+graf <- function(dados, idx, col, main, under=FALSE) {
 	d <- dados[,idx]
 	l <- length(idx); n <- length(levels(d[,1])) #Precisam ter todos o mesmo n de levels!!
 	mt <- matrix(rep(0, n*l), ncol=l)
@@ -31,7 +31,7 @@ graf <- function(idx, col, main, under=FALSE) {
 }
 #' @export
 #' @rdname graf
-porc <- function(idx) {
+porc <- function(dados, idx) {
 	d <- dados[,idx]
 	l <- length(idx);
 	if (is.null(dim(d)))	{
