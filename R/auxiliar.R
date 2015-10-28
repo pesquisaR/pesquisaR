@@ -18,7 +18,8 @@
 #' trim("     espaços     ")
 #' split("Um item e outro item, finalmente/no entanto")
 #' @export
-#' @rdname aux
+#' @encoding utf-8
+#' @rdname auxiliar
 wrap.it <- function(x, len = 10)
 { 
 	sapply(x, function(y) paste(strwrap(y, len), 
@@ -27,7 +28,7 @@ wrap.it <- function(x, len = 10)
 }
 
 #' @export
-#' @rdname aux
+#' @rdname auxiliar
 capitalize <- function(x) {
 	  s <- strsplit(x, " ")[[1]]
   paste(toupper(substring(s, 1,1)), substring(s, 2),
@@ -36,55 +37,20 @@ capitalize <- function(x) {
 capitalize <- Vectorize(capitalize)
 
 #' @export
-#' @rdname aux
+#' @rdname auxiliar
 trim <- function(x) return(gsub("^ .", "", gsub(". $", "", x)))
 
 #' @export
 #' @param pattern Padrão regular usado para separar os elementos
-#' @rdname aux
+#' @rdname auxiliar
 split <- function(x, pattern="(, )|( e )|/") {
 	res <- list()
 	j = 1
-	for (i in 1:length(data)) {
-		res[i]  = strsplit(trim(data[i]), )
+	for (i in 1:length(x)) {
+		res[i]  = strsplit(trim(x[i]), pattern)
 	}
 	return(unlist(res))
 }
 #' @export
-#' @rdname aux
+#' @rdname auxiliar
 to.p <- function(x) round(x/sum(x)*100,1)
-
-graf <- function(idx, col, main, under=FALSE) {
-	d <- dados[,idx]
-	l <- length(idx); n <- length(levels(d[,1])) #Precisam ter todos o mesmo n de levels!!
-	mt <- matrix(rep(0, n*l), ncol=l)
-	for (i in 1:l)
-		mt[,i] <- table(dados[,idx[i]])
-	mt = mt[-1,]
-	par(mar=c(4,7,3,2), xpd=TRUE)
-	if (under) {
-		barplot(mt, col=col, main=main, horiz=TRUE, axes=FALSE, las=1, space=0.8); text(dim(dados)[1]/2, 0.2+1.8*1:l, rname(names(dados)[idx],999))
-	} else {
-		mt <- apply(mt, 2, to.p)
-		barplot(mt, col=col, names.arg=rname(names(dados)[idx]), main=main, horiz=TRUE, axes=FALSE, las=1)
-	}
-	legend(x=1, y=-.5, legend= levels(d[,1])[-1], fill=col,  bty='n', ncol=n )
-}
-porc <- function(idx, name, lev=NULL) {
-	d <- dados[,idx]
-	l <- length(idx);
-	if (is.null(dim(d)))	{
-		n <- length(levels(d)) #Precisam ter todos o mesmo n de levels!!
-		lev <- levels(d)
-	} else {
-		n <- length(levels(d[,1])) #Precisam ter todos o mesmo n de levels!!
-		lev <- levels(d[,1])
-	}
-	mt <- matrix(rep(0, n*l), ncol=l)
-	for (i in 1:l)
-		mt[,i] <- table(dados[,idx[i]])
-	data <-data.frame(apply(mt, 2, to.p), row.names=lev)
-	colnames(data)<-rname(names(dados)[idx], 999)
-  rownames(data) <-rname(rownames(data), 999)
-	return(data)
-}

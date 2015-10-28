@@ -11,6 +11,7 @@
 #' @param col Cores a serem utilizadas
 #' @param main Título do gráfico
 #' @param under Lógico. O label de cada questão deve ser mostrado sob a barra?
+#' @encoding utf-8
 #' @export
 graf <- function(idx, col, main, under=FALSE) {
 	d <- dados[,idx]
