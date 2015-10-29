@@ -20,7 +20,7 @@
 #' @export
 #' @encoding utf-8
 #' @rdname auxiliar
-wrap.it <- function(x, len = 10)
+wrap.it <- function(x, len = 12)
 { 
 	sapply(x, function(y) paste(strwrap(y, len), 
 								collapse = "\n"), 
@@ -54,3 +54,17 @@ split <- function(x, pattern="(, )|( e )|/") {
 #' @export
 #' @rdname auxiliar
 to.p <- function(x) round(x/sum(x)*100,1)
+
+#' @export
+#' @rdname auxiliar 
+rname <- function(x, wrap=12, dictionary="dictionary.txt") {
+  dict <- read.csv(dictionary, header=FALSE, stringsAsFactors=FALSE)
+	x <- gsub("\\.", " ", x)
+	if (x=="") x <- "não respondeu / nenhum"
+	# Substitui handles
+  if (x %in% dict[,1])
+    x <- dict[which(x == dict[,1])  ,2]
+	x <- wrap.it(x, wrap)
+	return(x)
+}
+rname <- Vectorize(rname)

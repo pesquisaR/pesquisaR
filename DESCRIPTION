@@ -5,6 +5,6 @@ Authors@R: person("Andre", "Chalom", email = "andrechalom@gmail.com", role = c("
 Description: Conjunto de funções para gerar páginas HTML elegantes e funcionais a partir de dados de 
   pesquisas de opinião.
 Depends: R (>= 3.2.2)
-Imports: shiny
+Imports: shiny, MASS, graphics
 License: GPL-2
 LazyData: true

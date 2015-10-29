@@ -3,13 +3,14 @@
 \encoding{utf-8}
 \name{wrap.it}
 \alias{capitalize}
+\alias{rname}
 \alias{split}
 \alias{to.p}
 \alias{trim}
 \alias{wrap.it}
 \title{Funções auxiliares}
 \usage{
-wrap.it(x, len = 10)
+wrap.it(x, len = 12)
 
 capitalize(x)
 
@@ -18,6 +19,8 @@ trim(x)
 split(x, pattern = "(, )|( e )|/")
 
 to.p(x)
+
+rname(x, wrap = 12, dictionary = "dictionary.txt")
 }
 \arguments{
 \item{x}{Vetor de entrada; character para \code{wrap.it}, \code{trim} e \code{capitalize}, numeric para

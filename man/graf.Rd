@@ -6,11 +6,13 @@
 \alias{porc}
 \title{Gráficos e tabelas}
 \usage{
-graf(idx, col, main, under = FALSE)
+graf(dados, idx, col, main, under = FALSE)
 
-porc(idx)
+porc(dados, idx)
 }
 \arguments{
+\item{dados}{Tabela de dados gerada pela função \code{\link{carga}}}
+
 \item{idx}{índice das colunas desejadas na variável dados}
 
 \item{col}{Cores a serem utilizadas}
@@ -27,6 +29,5 @@ A função \code{graf} gera um gráfico de barra com as porcentagens de cada ní
 Essa função deve ser usada apenas em perguntas relacionadas, ou seja, todos os fatores devem ter
 exatamente os mesmos níveis.
 A função \code{porc} gera uma tabela de porcentagem para ser mostrada juntamente com o gráfico acima.
-Ambas as funções acessam a variável global dados (pode ser alterado no futuro!)
 }
 

@@ -13,6 +13,7 @@
 #' @param under Lógico. O label de cada questão deve ser mostrado sob a barra?
 #' @encoding utf-8
 #' @export
+#' @import graphics
 graf <- function(dados, idx, col, main, under=FALSE) {
 	d <- dados[,idx]
 	l <- length(idx); n <- length(levels(d[,1])) #Precisam ter todos o mesmo n de levels!!
