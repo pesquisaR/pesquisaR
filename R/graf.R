@@ -14,18 +14,19 @@
 #' @encoding utf-8
 #' @export
 #' @import graphics
-graf <- function(dados, idx, col, main, under=FALSE) {
+graf <- function(dados, idx, col = paleta, main = "", under=FALSE) {
 	d <- dados[,idx]
 	l <- length(idx); n <- length(levels(d[,1])) #Precisam ter todos o mesmo n de levels!!
 	mt <- matrix(rep(0, n*l), ncol=l)
 	for (i in 1:l)
 		mt[,i] <- table(dados[,idx[i]])
 	mt = mt[-1,]
+  mt <- apply(mt, 2, to.p)
 	par(mar=c(4,7,3,2), xpd=TRUE)
 	if (under) {
-		barplot(mt, col=col, main=main, horiz=TRUE, axes=FALSE, las=1, space=0.8); text(dim(dados)[1]/2, 0.2+1.8*1:l, rname(names(dados)[idx],999))
+		barplot(mt, col=col, main=main, horiz=TRUE, axes=FALSE, las=1, space=0.8)
+    text(50, 0.2+1.8*1:l, rname(names(dados)[idx],999))
 	} else {
-		mt <- apply(mt, 2, to.p)
 		barplot(mt, col=col, names.arg=rname(names(dados)[idx]), main=main, horiz=TRUE, axes=FALSE, las=1)
 	}
 	legend(x=1, y=-.5, legend= levels(d[,1])[-1], fill=col,  bty='n', ncol=n )
@@ -50,3 +51,7 @@ porc <- function(dados, idx) {
   rownames(data) <-rname(rownames(data), 999)
 	return(data)
 }
+
+#' @export
+#' @rdname graf
+paleta <- c("#8facbc", "#029db1", "#1f3f68", "#72ba94", "#d4c165", "#e17834", "#ce6c6d", "#874137", "#be9776")

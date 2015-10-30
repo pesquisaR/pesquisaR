@@ -8,7 +8,7 @@
 \alias{relatorio}
 \alias{shinyEnv}
 \title{Funções para carregar e tratar dados}
-\format{\preformatted{<environment: 0x1dea3398> 
+\format{\preformatted{<environment: 0x34266a8> 
 }}
 \usage{
 carga(pattern = "*.csv", remove = TRUE, ...)

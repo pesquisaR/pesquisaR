@@ -3,6 +3,7 @@
 export(capitalize)
 export(carga)
 export(graf)
+export(paleta)
 export(porc)
 export(registrar)
 export(relatorio)

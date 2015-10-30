@@ -38,7 +38,7 @@ capitalize <- Vectorize(capitalize)
 
 #' @export
 #' @rdname auxiliar
-trim <- function(x) return(gsub("^ .", "", gsub(". $", "", x)))
+trim <- function(x) return(gsub("^\\s+", "", gsub("\\s+$", "", x)))
 
 #' @export
 #' @param pattern Padrão regular usado para separar os elementos
