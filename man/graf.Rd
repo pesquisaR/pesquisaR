@@ -7,7 +7,7 @@
 \alias{paleta}
 \alias{porc}
 \title{Gráficos e tabelas}
-\format{\preformatted{ chr [1:9] "#8facbc" "#029db1" "#1f3f68" "#72ba94" "#d4c165" "#e17834" "#ce6c6d" "#874137" ...
+\format{\preformatted{ chr [1:9] "#8facbc" "#029db1" "#1f3f68" "#72ba94" "#d4c165" ...
 }}
 \usage{
 graf(dados, idx, col = paleta, main = "", under = FALSE)

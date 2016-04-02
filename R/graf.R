@@ -52,6 +52,32 @@ porc <- function(dados, idx) {
 	return(data)
 }
 
+
+#' @export
+#' @rdname graf
+plivre <- function(dados, idx, corte, main, col=paleta[1]) {
+    n = dim(dados)[1]
+    data <- rname(capitalize(split(dados[,idx])), 999)
+    data <- data[data != ""] 
+    toplot <- table(data)
+    toplot["Outros"] = sum(toplot[toplot < corte])/n*100
+    toplot <- sort(toplot[toplot >= corte])/n*100
+    par(mar=c(4,7,3,2))
+    barplot(toplot, horiz=TRUE, las=1, names.arg=wrap.it(names(toplot), 11), main=main, col=col)
+}
+
+#' @export
+#' @rdname graf
+tlivre <- function(dados, idx, corte) {
+    n = dim(dados)[1]
+    data <- rname(capitalize(split(dados[,idx])), 999)
+    data <- data[data != ""] 
+    toplot <- table(data)
+    toplot["Outros"] = sum(toplot[toplot < corte])/n*100
+    toplot <- rev(sort(toplot[toplot >= corte])/n*100)
+    data.frame(toplot)
+}
+
 #' @export
 #' @rdname graf
 paleta <- c("#8facbc", "#029db1", "#1f3f68", "#72ba94", "#d4c165", "#e17834", "#ce6c6d", "#874137", "#be9776")

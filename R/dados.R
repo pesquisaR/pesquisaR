@@ -27,7 +27,6 @@ carga <- function(pattern = "*.csv", remove = TRUE, ...) {
     dados <- as.data.frame(lapply(dados, function(x) gsub("[1234567890]*-", "", x)), stringsAsFactors=FALSE)
     dados <- as.data.frame(lapply(dados, trim), stringsAsFactors=FALSE)
   }
-  ####### write.csv(dados, "Manifestacao-final.csv")
   cat(paste("Entrevistas:", dim(dados)[1], "\n"))
   return(dados)
 }
@@ -39,17 +38,46 @@ shinyEnv <- new.env()
 
 #' Registra um conjunto de colunas para geração de gráficos e tabelas
 #' @export
+#' @param dados Dados. Como retornado por carga().
+#' @param idx Vetor numerico contendo os indices das colunas de dados
+#' @param plot.f Nome da funcao que sera chamada para fazer o grafico (ex: graf; pie; truehist)
+#' @param col Vetor com as cores a serem utilizadas
+#' @param main Titulo do grafico
+#' @param \dots Demais parametros graficos (inclusive under, se aplicavel)
 #' @import shiny
 #' @rdname dados
-registrar <- function(idx) {
+registrar <- function(dados, idx, plot.f, col, main, levels, ...) {
+    dots <- list(...)
+    outlist <- tryCatch(get("outlist", envir=shinyEnv), error=function(x) return(list()))
+    if (!missing(dados))
+        for (i in idx)
+            dados[,i] <- factor(dados[,i], levels=levels)
+    id <- outlist$maxid; if (is.null(id)) id=1
+    outlist[[paste0("g", id)]] <- renderPlot({
+        do.call(plot.f, c(list(dados=dados, idx=idx, col=col, main=main), dots))
+    })
+    outlist[[paste0("p", id)]] <- renderTable({porc(dados,rev(idx))})
+    outlist$maxid <- id+1
+    assign("outlist", outlist, envir=shinyEnv)
 }
 
-
-#' Registra um conjunto de colunas para geração de gráficos e tabelas
+#' Abre o relatorio com todos os campos registrados
 #' @export
 #' @import shiny
 #' @rdname dados
-relatorio <- function() {}
+relatorio <- function() {
+    server <- function(input, output) {
+        outlist <- tryCatch(get("outlist", envir=shinyEnv), error=function(x) return(list()))
+        for (i in names(outlist)) if(i != "maxid")
+            output[[i]] <- outlist[[i]]
+    }
+    # GERAR AUTOMATICAMENTE?????
+    ui <- fluidPage(
+                    plotOutput("g1"),
+                    tableOutput("p1")
+                    )
+    shinyApp(ui=ui, server=server)
+}
 # Carregar dados INTERMEDIARIOS
 
 # Remove os 1- 2- 3-
