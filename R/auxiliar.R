@@ -65,6 +65,6 @@ rname <- function(x, wrap=12, dictionary="dictionary.txt") {
   if (x %in% dict[,1])
     x <- dict[which(x == dict[,1])  ,2]
 	x <- wrap.it(x, wrap)
-	return(x)
+	return(x[[1]]) # BUGFIX, as vezes esta retornando uma lista e nao sei pq
 }
 rname <- Vectorize(rname)

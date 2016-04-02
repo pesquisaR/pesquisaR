@@ -1,10 +1,15 @@
 Package: pesquisaR
 Title: Pesquisas de Opinião em R
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: person("Andre", "Chalom", email = "andrechalom@gmail.com", role = c("aut", "cre"))
-Description: Conjunto de funções para gerar páginas HTML elegantes e funcionais a partir de dados de 
-  pesquisas de opinião.
-Depends: R (>= 3.2.2)
-Imports: shiny, MASS, graphics
+Description: Conjunto de funções para gerar páginas HTML elegantes e funcionais
+    a partir de dados de pesquisas de opinião.
+Depends:
+    R (>= 3.2.2)
+Imports:
+    shiny,
+    MASS,
+    graphics
 License: GPL-2
 LazyData: true
+RoxygenNote: 5.0.1
