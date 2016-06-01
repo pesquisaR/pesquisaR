@@ -4,8 +4,6 @@
 \encoding{utf-8}
 \name{carga}
 \alias{carga}
-\alias{registrar}
-\alias{relatorio}
 \alias{shinyEnv}
 \title{Funções para carregar e tratar dados}
 \format{An object of class \code{environment} of length 0.}
@@ -13,38 +11,18 @@
 carga(pattern = "*.csv", remove = TRUE, ...)
 
 shinyEnv
-
-registrar(dados, idx, plot.f, col, main, levels, ...)
-
-relatorio()
 }
 \arguments{
 \item{pattern}{Padrão de busca para o nome dos arquivos.}
 
 \item{remove}{Lógico. As colunas devem ser tratadas para remover espaços em branco e 1-, 2-, 3-, etc?}
 
-\item{dados}{Dados. Como retornado por carga().}
-
-\item{idx}{Vetor numerico contendo os indices das colunas de dados}
-
-\item{plot.f}{Nome da funcao que sera chamada para fazer o grafico (ex: graf; pie; truehist)}
-
-\item{col}{Vetor com as cores a serem utilizadas}
-
-\item{main}{Titulo do grafico}
-
 \item{\dots}{Demais argumentos para a função \code{read.csv}.}
-
-\item{\dots}{Demais parametros graficos (inclusive under, se aplicavel)}
 }
 \description{
 Funções padrão para carregar dados a partir de arquivos csv.
 
 Ambiente shiny para geração do relatório
-
-Registra um conjunto de colunas para geração de gráficos e tabelas
-
-Abre o relatorio com todos os campos registrados
 }
 \details{
 A função \code{carga} carrega todos os arquivos com um determinado padrão (por padrão *.csv)

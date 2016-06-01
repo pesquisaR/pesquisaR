@@ -14,7 +14,7 @@
 #' @encoding utf-8
 #' @export
 #' @import graphics
-graf <- function(dados, idx, col = paleta, main = "", under=FALSE) {
+graf <- function(dados, idx, col = paleta, main = "", under=FALSE, y.leg = -0.5) {
 	d <- dados[,idx]
 	l <- length(idx); n <- length(levels(d[,1])) #Precisam ter todos o mesmo n de levels!!
 	mt <- matrix(rep(0, n*l), ncol=l)
@@ -29,7 +29,7 @@ graf <- function(dados, idx, col = paleta, main = "", under=FALSE) {
 	} else {
 		barplot(mt, col=col, names.arg=rname(names(dados)[idx]), main=main, horiz=TRUE, axes=FALSE, las=1)
 	}
-	legend(x=1, y=-.5, legend= levels(d[,1])[-1], fill=col,  bty='n', ncol=n )
+	legend(x=1, y=y.leg, legend= levels(d[,1])[-1], fill=col,  bty='n', ncol=n )
 }
 #' @export
 #' @rdname graf
@@ -60,10 +60,10 @@ plivre <- function(dados, idx, corte, main, col=paleta[1], wrap=12) {
     data <- rname(capitalize(split(dados[,idx])), 999)
     data <- data[data != ""] 
     toplot <- table(data)
-    toplot["Outros"] = sum(toplot[toplot < corte])/n*100
+    toplot["Outros"] = sum(toplot[toplot < corte])
     toplot <- sort(toplot[toplot >= corte])/n*100
     par(mar=c(4,10,3,2))
-    barplot(toplot, horiz=TRUE, las=1, names.arg=wrap.it(names(toplot), wrap), main=main, col=col)
+    barplot(as.numeric(toplot), horiz=TRUE, las=1, names.arg=wrap.it(names(toplot), wrap), main=main, col=col)
 }
 
 #' @export

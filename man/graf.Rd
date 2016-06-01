@@ -11,7 +11,7 @@
 \title{Gráficos e tabelas}
 \format{An object of class \code{character} of length 9.}
 \usage{
-graf(dados, idx, col = paleta, main = "", under = FALSE)
+graf(dados, idx, col = paleta, main = "", under = FALSE, y.leg = -0.5)
 
 porc(dados, idx)
 

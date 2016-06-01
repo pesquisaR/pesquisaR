@@ -57,6 +57,7 @@ to.p <- function(x) round(x/sum(x)*100,1)
 
 #' @export
 #' @rdname auxiliar 
+#' @import utils
 rname <- function(x, wrap=12, dictionary="dictionary.txt") {
   dict <- read.csv(dictionary, header=FALSE, stringsAsFactors=FALSE)
 	x <- gsub("\\.", " ", x)

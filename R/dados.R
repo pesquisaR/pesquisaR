@@ -45,7 +45,7 @@ shinyEnv <- new.env()
 #' @param main Titulo do grafico
 #' @param \dots Demais parametros graficos (inclusive under, se aplicavel)
 #' @import shiny
-#' @rdname dados
+#' @rdname relatorio
 registrar <- function(dados, idx, plot.f, col, main, levels, ...) {
     dots <- list(...)
     outlist <- tryCatch(get("outlist", envir=shinyEnv), error=function(x) return(list()))
@@ -64,7 +64,6 @@ registrar <- function(dados, idx, plot.f, col, main, levels, ...) {
 #' Abre o relatorio com todos os campos registrados
 #' @export
 #' @import shiny
-#' @rdname dados
 relatorio <- function() {
     server <- function(input, output) {
         outlist <- tryCatch(get("outlist", envir=shinyEnv), error=function(x) return(list()))
