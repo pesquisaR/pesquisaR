@@ -55,7 +55,7 @@ porc <- function(dados, idx) {
 
 #' @export
 #' @rdname graf
-plivre <- function(dados, idx, corte, main, col=paleta[1], wrap=12) {
+plivre <- function(dados, idx, corte = 5, main, col=paleta[1], wrap=12) {
     n = dim(dados)[1]
     data <- rname(capitalize(split(dados[,idx])), 999)
     data <- data[data != ""] 
@@ -68,14 +68,16 @@ plivre <- function(dados, idx, corte, main, col=paleta[1], wrap=12) {
 
 #' @export
 #' @rdname graf
-tlivre <- function(dados, idx, corte) {
+tlivre <- function(dados, idx, corte = 5) {
     n = dim(dados)[1]
     data <- rname(capitalize(split(dados[,idx])), 999)
     data <- data[data != ""] 
     toplot <- table(data)
-    toplot["Outros"] = sum(toplot[toplot < corte])/n*100
+    toplot["Outros"] = sum(toplot[toplot < corte])
     toplot <- rev(round(sort(toplot[toplot >= corte])/n*100,2))
-    data.frame(Porcentagem=toplot)
+    x = data.frame(Porcentagem=as.numeric(toplot))
+    rownames(x) = names(toplot)
+    return(x)
 }
 
 #' @export
