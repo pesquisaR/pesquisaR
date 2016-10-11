@@ -20,7 +20,11 @@ graf <- function(dados, idx, col = paleta, main = "", under=FALSE, y.leg = -0.5)
 	mt <- matrix(rep(0, n*l), ncol=l)
 	for (i in 1:l)
 		mt[,i] <- table(dados[,idx[i]])
-	mt = mt[-1,]
+    leg = levels(d[,1])
+    if (names(dados)[1] == "") {
+    	mt = mt[-1,]
+        leg = leg[-1]
+    }
   mt <- apply(mt, 2, to.p)
 	par(mar=c(4,7,3,2), xpd=TRUE)
 	if (under) {
@@ -29,7 +33,7 @@ graf <- function(dados, idx, col = paleta, main = "", under=FALSE, y.leg = -0.5)
 	} else {
 		barplot(mt, col=col, names.arg=rname(names(dados)[idx]), main=main, horiz=TRUE, axes=FALSE, las=1)
 	}
-	legend(x=1, y=y.leg, legend= levels(d[,1])[-1], fill=col,  bty='n', ncol=n )
+	legend(x=1, y=y.leg, legend= leg, fill=col,  bty='n', ncol=n )
 }
 #' @export
 #' @rdname graf
