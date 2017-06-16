@@ -4,10 +4,12 @@
 \encoding{utf-8}
 \name{graf}
 \alias{graf}
-\alias{paleta}
-\alias{plivre}
 \alias{porc}
+\alias{plivre}
 \alias{tlivre}
+\alias{paleta}
+\alias{acept.plot}
+\alias{rel.plot}
 \title{Gráficos e tabelas}
 \format{An object of class \code{character} of length 9.}
 \usage{
@@ -15,11 +17,15 @@ graf(dados, idx, col = paleta, main = "", under = FALSE, y.leg = -0.5)
 
 porc(dados, idx)
 
-plivre(dados, idx, corte, main, col = paleta[1], wrap = 12)
+plivre(dados, idx, corte = 5, main, col = paleta[1], wrap = 12)
 
-tlivre(dados, idx, corte)
+tlivre(dados, idx, corte = 5)
 
 paleta
+
+acept.plot(dados, var, cols = NULL, ...)
+
+rel.plot(dados, indep, dep, icols = NULL, dcols = NULL, ...)
 }
 \arguments{
 \item{dados}{Tabela de dados gerada pela função \code{\link{carga}}}
@@ -31,9 +37,25 @@ paleta
 \item{main}{Título do gráfico}
 
 \item{under}{Lógico. O label de cada questão deve ser mostrado sob a barra?}
+
+\item{var}{Número da variável na tabela de dados}
+
+\item{cols}{Colunas a serem mantidas (em ordem) na tabela de dados}
+
+\item{indep}{Número da coluna da variável independente}
+
+\item{dep}{Número da coluna da variável dependente}
+
+\item{icols}{Colunas a serem mantidas na variável independente}
+
+\item{dcols}{Colunas a serem mantidas na variável dependente}
 }
 \description{
 Gráficos e tabelas padrão.
+
+acept.plot faz uma plot de aceitação ou rejeição de uma pauta, semelhante ao gerado pela tabela acept.table
+
+rel.plot faz uma plot de relacionamento entre duas variáveis
 }
 \details{
 A função \code{graf} gera um gráfico de barra com as porcentagens de cada nível de um fator.
@@ -42,4 +64,3 @@ exatamente os mesmos níveis.
 A função \code{porc} gera uma tabela de porcentagem para ser mostrada juntamente com o gráfico acima.
 }
 \keyword{datasets}
-

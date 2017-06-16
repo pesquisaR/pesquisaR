@@ -30,4 +30,3 @@ e devolve um data.frame com todos os dados. Um erro pode ser emitido caso os arq
 os mesmos nomes de colunas.
 }
 \keyword{datasets}
-

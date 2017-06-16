@@ -27,4 +27,3 @@ Registra um conjunto de colunas para geração de gráficos e tabelas
 
 Abre o relatorio com todos os campos registrados
 }
-

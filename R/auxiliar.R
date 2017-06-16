@@ -53,7 +53,7 @@ split <- function(x, pattern="(, )|( e )|/") {
 }
 #' @export
 #' @rdname auxiliar
-to.p <- function(x) round(x/sum(x)*100,1)
+to.p <- function(x) { return(round(x/sum(x)*100,1)) }
 
 #' @export
 #' @rdname auxiliar 

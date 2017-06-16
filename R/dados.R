@@ -120,3 +120,21 @@ relatorio <- function() {
 #}
 #rname <- Vectorize(rname)
 #
+
+#' acept.table gera uma tabela de aceitação ou rejeição de uma pauta. Na versão atual, só funciona com as categorias
+#' 'progressista' e 'conservador'.
+#' @param dados tabela de dados
+#' @param var número da variável na tabela de dados
+#' @export
+acept.table = function(dados, var) {
+    NN = c( "Progressista","Conservador")
+    dv = dados[,var]
+    to.m = function(x,full) 100*mean(x)/max(abs(full))
+    tt = tapply(dados$progressista, dv, to.m, full=dados$progressista)
+    v1 = data.frame(t(tt))
+    v1 = rbind(v1, tapply(dados$conservador, dv, to.m, full=dados$conservador))
+    rownames(v1) = NN
+    colnames(v1) = rname(colnames(v1))
+    v1
+}
+

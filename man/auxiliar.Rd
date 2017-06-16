@@ -2,12 +2,12 @@
 % Please edit documentation in R/auxiliar.R
 \encoding{utf-8}
 \name{wrap.it}
+\alias{wrap.it}
 \alias{capitalize}
-\alias{rname}
+\alias{trim}
 \alias{split}
 \alias{to.p}
-\alias{trim}
-\alias{wrap.it}
+\alias{rname}
 \title{Funções auxiliares}
 \usage{
 wrap.it(x, len = 12)
@@ -48,4 +48,3 @@ capitalize("texto em minúsculas")
 trim("     espaços     ")
 split("Um item e outro item, finalmente/no entanto")
 }
-
